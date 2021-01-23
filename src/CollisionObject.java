@@ -15,8 +15,17 @@ public class CollisionObject{
     public void setPath(int index, AnalyticPath<Double, Double[]> newPath) { this.paths.set(index, newPath); }
 
     /* Evaluator for current path at given time */
-    public Double[] evalPath(double t) {
+    public Double[] evalCurrentPath(double t) {
         return this.getCurrentPath().apply( Double.valueOf(t) );
+    }
+
+    // TODO: Should be implemented with BST
+    public Double[] evalPath(double t) {
+        int i = 0;
+        while (t < this.getBound(i)) {
+            i += 1;
+        } 
+        return this.evalPath(i, t);
     }
 
     /* Evaluator for path at given index and at given time */

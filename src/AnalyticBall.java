@@ -1,16 +1,15 @@
-
+import java.awt.*;
 
 public class AnalyticBall extends CollisionObject {
     private double r;                       // Ball radius
     private double m;                       // Ball mass
-    private int collisionCount;             // Number of preious collisions
+    private int collisionCount = 0;             // Number of preious collisions
     private double speed;                   // Speed at which curve runns
         
-    public AnalyticBall(double radius, double mass, int collisionCount, double speed, AnalyticPath<Double, Double[]> fn) {
+    public AnalyticBall(double radius, double mass, double speed, AnalyticPath<Double, Double[]> fn) {
         super(fn);
         this.r = radius;
         this.m = mass;
-        this.collisionCount = collisionCount;
         this.speed = speed;
     }
 
@@ -29,4 +28,11 @@ public class AnalyticBall extends CollisionObject {
     /* Updaters for field variables with natural successor */
     public void updateCollisionCount() { this.setCollisionCount( this.getCollisionCount() + 1 ); }
 
+    public void draw(Graphics2D g2d, double t) {
+        Double[] coord = this.evalPath(t);
+        double x = coord[0].doubleValue();
+        double y = coord[1].doubleValue();
+
+        g2d.fillOval((int) (x - this.r), (int) (y - this.r), (int) (2 * this.r), (int) (2 * this.r));
+    }
 }
