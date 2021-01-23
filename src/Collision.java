@@ -6,10 +6,11 @@ public class Collision implements Comparable<Collision>{
     public double collisionTime;
 
     public Collision(Ball[] balls, int collisionType, double timeToCollision){
-        collisionTime = System.currentTimeMillis() + timeToCollision;
+        this.collisionTime = System.currentTimeMillis() + timeToCollision;
         this.balls = balls;
         this.amountOfBalls = balls.length;
         this.collisionType = collisionType;
+        
         for(int i = 0; i < amountOfBalls; i++){
             collisionsAtCreation[i] = balls[i].getCollisionCount();
         }
