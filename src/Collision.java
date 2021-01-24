@@ -3,13 +3,14 @@ public class Collision implements Comparable<Collision>{
     private int[] collisionsAtCreation;
     public double collisionTime;
 
-    public Collision(CollisionObject[] colliders, double timeToCollision){
-        collisionTime = System.currentTimeMillis() + timeToCollision;
+
+    public Collision(CollisionObject[] colliders, double collisionTime){
         this.colliders = colliders;
-        for(int i = 0; i < 2; i++){
+        this.collisionTime = collisionTime;
+        for(int i = 0; i < 2; i++) {
             collisionsAtCreation[i] = colliders[i].getCollisionCount();
+
         }
-        this.collisionTime = timeToCollision;
     }
 
     public CollisionObject[] getColliders(){

@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Random;
 
-public class Ball extends CollisionObject{
+public class Ball {
     private double x, y, vx, vy;
     private int collisionCount;
     private boolean isWall;
