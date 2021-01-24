@@ -56,4 +56,10 @@ public class CollisionObject{
         }
         return coordMatrix;
     }
+
+    /* Updates paths for two objects that is colliding at given time */
+    public static void collision(CollisionObject obj1, CollisionObject obj2, double t) {
+        obj1.setCurrentBound(t);
+        obj2.setCurrentBound(t);
+    }
 }
