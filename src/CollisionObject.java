@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class CollisionObject{
     private ArrayList<AnalyticPath<Double, Double[]>> paths = new ArrayList<>();
     private ArrayList<Double> upperTimeBounds = new ArrayList<>();
+    private int collisionCount = 0;
 
     /* Constructor */
     public CollisionObject( AnalyticPath<Double, Double[]> path) { this.paths.add(path); }
@@ -10,6 +11,11 @@ public class CollisionObject{
     /* Getter for analytic path. This returns the function with the largest upper bound */
     public AnalyticPath<Double, Double[]> getCurrentPath() { return this.paths.get(this.paths.size()-1); }
 
+    /* Setter, getter and updater for collision count */
+    public void setCollisionCount(int c) { this.collisionCount = c; }
+    public int getCollisionCount() { return this.collisionCount; }
+    public void updateCollisionCount() { this.setCollisionCount( this.getCollisionCount() + 1 ); }
+ 
     /* Adder and setter for analytic path */
     public void addPath( AnalyticPath<Double, Double[]> newPath ) { this.paths.add(newPath); }
     public void setPath(int index, AnalyticPath<Double, Double[]> newPath) { this.paths.set(index, newPath); }
