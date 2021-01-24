@@ -58,8 +58,24 @@ public class CollisionObject{
     }
 
     /* Updates paths for two objects that is colliding at given time */
-    public static void collision(CollisionObject obj1, CollisionObject obj2, double t) {
+    public static void updatePaths(CollisionObject obj1, CollisionObject obj2, double t) {
         obj1.setCurrentBound(t);
         obj2.setCurrentBound(t);
+
+        if(obj1.type().equals("wall")){
+            //TODO: calculate wallcollision
+        }
+        else if(obj1.type().equals("wall")){
+            //TODO: calculate wallcolision
+        }
+        else{
+            //TODO: calculate ballcollision
+        }
     }
+
+    public String type(){
+        return "";
+    }
+
+
 }

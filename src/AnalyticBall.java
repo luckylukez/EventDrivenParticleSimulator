@@ -35,4 +35,9 @@ public class AnalyticBall extends CollisionObject {
 
         g2d.fillOval((int) (x - this.r), (int) (y - this.r), (int) (2 * this.r), (int) (2 * this.r));
     }
+
+    @Override
+    public String type(){
+        return "ball";
+    }
 }

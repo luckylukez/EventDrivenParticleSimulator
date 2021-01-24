@@ -62,7 +62,7 @@ public class BouncingBalls {
 
         // Create collisions queue
         PriorityQueue<Collision> collisions = new PriorityQueue<>();
-        for (int i = 0; i < balls.size(); i++){ //-1 because last ball has no ball left to calculate collision with
+        for (int i = 0; i < balls.size(); i++){
             CollisionObject b1 = balls.get(i);
             for(int j = i+1; j < balls.size(); j++ ){
                 CollisionObject b2 = balls.get(j);
