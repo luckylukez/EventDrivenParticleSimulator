@@ -1,6 +1,9 @@
-{-# LANGUAGE GADTs, ConstraintKinds #-}
+{-# LANGUAGE GADTs, ConstraintKinds, TypeSynonymInstances #-}
+
 module Transcendental where 
+
 import Prelude hiding ((+), (-), (*), (/), negate, recip, (^), pi, sin, cos, exp, root)
+
 -- Class methods --
 type Field a = (MulGroup a, AddGroup a)
 
