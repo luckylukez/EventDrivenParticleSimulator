@@ -107,20 +107,52 @@ public class FunExp  {
     public static FunExp expr;
     public FunExp() {}
 
+    public Function<Double, Double> funNeg(Function<Double, Double> f) {
+        return x -> -f.apply(x);
+    }
+
+    public Function<Double, Double> funAdd(Function<Double, Double> f, Function<Double, Double> g) {
+        return x -> f.apply(x) + g.apply(x);
+    }
+
+    public Function<Double, Double> funMul(Function<Double, Double> f, Function<Double, Double> g) {
+        return x -> f.apply(x) * g.apply(x);
+    }
+
+    public Function<Double, Double> funRecip(Function<Double, Double> f) {
+        return x -> 1/f.apply(x);
+    }
+
+    public Function<Double, Double> funRoot(Function<Double, Double> f) {
+        return x -> Math.sqrt(f.apply(x));
+    }
+
+    public Function<Double, Double> funSin(Function<Double, Double> f) {
+        return x -> Math.sin(f.apply(x));
+    }
+
+    public Function<Double, Double> funCos(Function<Double, Double> f) {
+        return x -> Math.cos(f.apply(x));
+    }
+
+    public Function<Double, Double> funExp(Function<Double, Double> f) {
+        return x -> Math.exp(f.apply(x));
+    }
+
     public Function<Double, Double> eval(FunExp expr) throws ClassNotFoundException {
         if      (expr instanceof Zero)  { return ((Zero) expr).getFun(); }
         else if (expr instanceof One)   { return ((One) expr).getFun(); }
         else if (expr instanceof Con)   { return ((Con) expr).getFun(); }
         else if (expr instanceof Pi)    { return ((Pi) expr).getFun(); }
         else if (expr instanceof X)     { return ((X) expr).getFun(); }
-        else if (expr instanceof Neg)   { return eval(((Neg) expr).getExpr()); }
-        else if (expr instanceof Add)   {return x -> x;}
-        else if (expr instanceof Mul)   {return x -> x;}
-        else if (expr instanceof Recip) {return eval(((Recip) expr).getExpr()); }
-        else if (expr instanceof Root)  {return eval(((Root) expr).getExpr()); }
-        else if (expr instanceof Sin)   {return eval(((Sin) expr).getExpr()); }
-        else if (expr instanceof Cos)   {return eval(((Cos) expr).getExpr()); }
-        else if (expr instanceof Exp)   {return eval(((Exp) expr).getExpr()); }
+        else if (expr instanceof Neg)   { return funNeg(eval(((Neg) expr).getExpr())); }
+        else if (expr instanceof Add)   { return funAdd(eval(((Add) expr).getExpr1()), eval(((Add) expr).getExpr2())); }
+        else if (expr instanceof Mul)   { return funMul(eval(((Mul) expr).getExpr1()), eval(((Mul) expr).getExpr2())); }
+        else if (expr instanceof Recip) { return funRecip(eval(((Recip) expr).getExpr())); }
+        else if (expr instanceof Root)  { return funRoot(eval(((Root) expr).getExpr())); }
+        else if (expr instanceof Sin)   { return funSin(eval(((Sin) expr).getExpr())); }
+        else if (expr instanceof Cos)   { return funCos(eval(((Cos) expr).getExpr())); }
+        else if (expr instanceof Exp)   { return funExp(eval(((Exp) expr).getExpr())); }
         else {
             throw new ClassNotFoundException("Unexpected function input.");
         }
