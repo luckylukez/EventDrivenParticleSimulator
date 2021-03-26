@@ -34,7 +34,7 @@ public class analyticPath {
     }
 
     /*
-    Evaluates path from start of interval to end of interval.
+    Evaluates path from start of interval to end of interval. Note that the intervals are interpreted as [a,b).
 
     Parameters:
     (int): Resolution, i.e. number of evaluated points between every whole t.
@@ -42,15 +42,16 @@ public class analyticPath {
     Returns:
     (LinkedList<Double[]>): linked list with elements on form [x(t), x'(t), y(t), y'(t), t].
      */
-    public LinkedList<Double[]> evalPath(int res) throws ClassNotFoundException {
+    public LinkedList<Double[]> evalPath(double res) throws ClassNotFoundException {
         LinkedList<Double[]> numericPath = new LinkedList<>();
         for (int i = 0; i < this.intervals.size(); i++) {
             ArrayList<Function<Double, Double>> xFun      = this.xPath.get(i).eval(this.xPath.get(i)); // Eval expr to lambda fun
-            ArrayList<Function<Double, Double>> yFun      = this.xPath.get(i).eval(this.xPath.get(i)); // Eval expr to lambda fun
+            ArrayList<Function<Double, Double>> yFun      = this.yPath.get(i).eval(this.yPath.get(i)); // Eval expr to lambda fun
 
             Double t = this.intervals.get(i).get(0);
-            Double[] point = new Double[5];
-            for (int j = 0; j < (this.intervals.get(i).get(1) - this.intervals.get(i).get(0))/res; j++) {
+            for (int j = 0; j < (int) (this.intervals.get(i).get(1) - this.intervals.get(i).get(0))*res; j++) {
+                Double[] point = new Double[5];
+
                 // Evaluates functions at time and stores to array
                 point[0] = xFun.get(0).apply(t);
                 point[1] = xFun.get(1).apply(t);
@@ -58,11 +59,10 @@ public class analyticPath {
                 point[3] = yFun.get(1).apply(t);
                 point[4] = t;
 
-                // Increments time
-                t += (this.intervals.get(i).get(1) - this.intervals.get(i).get(0))/res;
+                // Adds point to list and increments time
+                numericPath.add(point);
+                t += 1/res;
             }
-            // Adds point to linked list
-            numericPath.add(point);
         }
         return numericPath;
     }
