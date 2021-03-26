@@ -113,6 +113,13 @@ public class BiFunExp  {
         public BiFunExp getExpr() { return this.expr; }
     }
 
+    public static class Log extends BiFunExp {
+        private final BiFunExp expr;
+        public Log(BiFunExp expr) { this.expr = expr; }
+
+        public BiFunExp getExpr() { return this.expr; }
+    }
+
     public static BiFunExp expr;
     public BiFunExp() {}
 
@@ -164,6 +171,12 @@ public class BiFunExp  {
         return new ArrayList<>(Arrays.asList(
                 x -> Math.exp(f.get(0).apply(x)),
                 x -> Math.exp(f.get(0).apply(x)) * f.get(1).apply(x)));
+    }
+
+    public ArrayList<Function<Double, Double>> biFunLog(ArrayList<Function<Double, Double>> f) {
+        return new ArrayList<>(Arrays.asList(
+                x -> Math.log(f.get(0).apply(x)),
+                x -> f.get(1).apply(x)/f.get(0).apply(x)));
     }
 
     public ArrayList<Function<Double, Double>> eval(BiFunExp expr) throws ClassNotFoundException {
