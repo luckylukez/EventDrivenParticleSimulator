@@ -45,18 +45,18 @@ public class analyticPath {
     public LinkedList<Double[]> evalPath(double res) throws ClassNotFoundException {
         LinkedList<Double[]> numericPath = new LinkedList<>();
         for (int i = 0; i < this.intervals.size(); i++) {
-            ArrayList<Function<Double, Double>> xFun      = this.xPath.get(i).eval(this.xPath.get(i)); // Eval expr to lambda fun
-            ArrayList<Function<Double, Double>> yFun      = this.yPath.get(i).eval(this.yPath.get(i)); // Eval expr to lambda fun
+            FunPair xFun      = this.xPath.get(i).eval(this.xPath.get(i)); // Eval expr to lambda fun
+            FunPair yFun      = this.yPath.get(i).eval(this.yPath.get(i)); // Eval expr to lambda fun
 
             Double t = this.intervals.get(i).get(0);
             for (int j = 0; j < (int) (this.intervals.get(i).get(1) - this.intervals.get(i).get(0))*res; j++) {
                 Double[] point = new Double[5];
 
                 // Evaluates functions at time and stores to array
-                point[0] = xFun.get(0).apply(t);
-                point[1] = xFun.get(1).apply(t);
-                point[2] = yFun.get(0).apply(t);
-                point[3] = yFun.get(1).apply(t);
+                point[0] = xFun.getFun().apply(t);
+                point[1] = xFun.getDeriv().apply(t);
+                point[2] = yFun.getFun().apply(t);
+                point[3] = yFun.getDeriv().apply(t);
                 point[4] = t;
 
                 // Adds point to list and increments time

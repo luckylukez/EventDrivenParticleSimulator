@@ -16,12 +16,10 @@ public class FunExpTest {
         analyticPath testPath = new analyticPath(xt, yt);
         testPath.addInterval(I);
 
-        LinkedList<Double[]> result = testPath.evalPath(20);
+        LinkedList<Double[]> result = testPath.evalPath(1);
         for (int i = 0; i < result.size(); i++) {
-            for (int j = 0; j < 5; j++) {
                 System.out.println("x = " + result.get(i)[0] + ", x' = " + result.get(i)[1] +
                         ", y = " + result.get(i)[2] + ", y' = " + result.get(i)[3] + ", t = " + result.get(i)[4]);
-            }
         }
 
 
