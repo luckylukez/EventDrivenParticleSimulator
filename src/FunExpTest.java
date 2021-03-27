@@ -1,5 +1,6 @@
 import analyticPath.BiFunExp;
 import analyticPath.analyticPath;
+import analyticPath.PowerSeries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,9 @@ public class FunExpTest {
                 System.out.println("x = " + result.get(i)[0] + ", x' = " + result.get(i)[1] +
                         ", y = " + result.get(i)[2] + ", y' = " + result.get(i)[3] + ", t = " + result.get(i)[4]);
         }
+
+        PowerSeries ps = new PowerSeries(yt);
+        System.out.println(ps.getCoeff(10, 5.0));
 
 
         /*

@@ -120,6 +120,13 @@ public class BiFunExp  {
         public BiFunExp getExpr() { return this.expr; }
     }
 
+    public static class Factorial extends BiFunExp {
+        private final BiFunExp expr;
+        public Factorial(BiFunExp expr) { this.expr = expr; }
+
+        public BiFunExp getExpr() { return this.expr; }
+    }
+
     public static BiFunExp expr;
     public BiFunExp() {}
 
