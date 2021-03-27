@@ -186,7 +186,7 @@ public class BiFunExp  {
     Returns:
     (BiFunExp): Differentiated expression
      */
-    public BiFunExp synatxDeriv(BiFunExp expr) {
+    public BiFunExp synatxDeriv(BiFunExp expr) throws ClassNotFoundException {
         if      (expr instanceof Zero)  { return new Zero(); }
         else if (expr instanceof One)   { return new Zero(); }
         else if (expr instanceof Con)   { return new Zero(); }
@@ -209,10 +209,14 @@ public class BiFunExp  {
                     synatxDeriv(((Root) expr).getExpr()));
         }
         else if (expr instanceof Sin)   {
-            return biFunSin(eval(((Sin) expr).getExpr())); }
-        else if (expr instanceof Cos)   { return biFunCos(eval(((Cos) expr).getExpr()));
+            return new Mul(new Cos(((Sin) expr).getExpr()), synatxDeriv(((Sin) expr).getExpr()));
         }
-        else if (expr instanceof Exp)   { return biFunExp(eval(((Exp) expr).getExpr())); }
+        else if (expr instanceof Cos)   {
+            return new Neg(new Mul(new Sin(((Cos) expr).getExpr()), synatxDeriv(((Cos) expr).getExpr())));
+        }
+        else if (expr instanceof Exp)   {
+            return new Mul(new Exp(((Exp) expr).getExpr()), synatxDeriv(((Exp) expr).getExpr()));
+        }
         else {
             throw new ClassNotFoundException("Unexpected function input.");
         }
