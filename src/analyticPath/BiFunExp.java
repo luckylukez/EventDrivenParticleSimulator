@@ -1,11 +1,42 @@
 package analyticPath;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
 import java.util.function.Function;
 
 public class BiFunExp  {
+    // Om ni kör på en factory kan ni nog ha den här i själva klassen antar jag?
+    public static class Factory {
+        public static BiFunExp Add(BiFunExp a, BiFunExp b)
+        {
+            return new BiFunExp.Add(a, b);
+        }
+
+        public static BiFunExp Mul(BiFunExp a, BiFunExp b)
+        {
+            return new BiFunExp.Mul(a, b);
+        }
+
+        public static BiFunExp Exp(BiFunExp a)
+        {
+            return new BiFunExp.Exp(a);
+        }
+
+        public static BiFunExp Zero() {
+            return new BiFunExp.Zero();
+        }
+
+        public static BiFunExp One() {
+            return new BiFunExp.One();
+        }
+
+        public static BiFunExp Pi() {
+            return new BiFunExp.Pi();
+        }
+
+        public static BiFunExp X() {
+            return new BiFunExp.X();
+        }
+    }
+
     public static class Zero extends BiFunExp {
         private static final FunPair f = new FunPair(x -> 0.0, x -> 0.0);
         public Zero() {}

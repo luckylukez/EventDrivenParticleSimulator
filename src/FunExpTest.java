@@ -1,16 +1,67 @@
 import analyticPath.BiFunExp;
 import analyticPath.analyticPath;
+import analyticPath.BiFunExpBuilder.Builder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
-import java.util.function.Function;
 
 public class FunExpTest {
+
     public static void main(String[] args) throws ClassNotFoundException {
-        BiFunExp.Exp xt = new BiFunExp.Exp(new BiFunExp.Add(new BiFunExp.Exp(new BiFunExp.Pi()), new BiFunExp.X()));
-        BiFunExp.Exp yt = new BiFunExp.Exp(new BiFunExp.Add(new BiFunExp.Exp(new BiFunExp.Pi()), new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X())));
+
+        // Det här är det coola balla jag ville visa, men det
+        // var ju helt onödigt i erat fall eftersom ni bara gör en action
+        // per grej. I en påhittad domän kan man göra sånt här och då blir det relevant:
+
+        // GangsterEmpireBuilder.Build(expression -> expression
+        //         .Name("GurrasGs Gangsterliga")
+        //         .Pengar(999999.69)
+        //         .WithMembers(members -> members
+        //                 .Member("Johan", HurFarligEnum.Max)
+        //                 .Member("Bertil", HurFarligEnum.MerÄnMax)
+        //                 .Member("Karlsson", HurFarligEnum.MerÄnMerÄnMax)
+        //         )
+        // );
+
+        // Men i erat fall så är det så linjärt och man kör aldrig flera metoder
+        // på raken liksom, så det blir mest bara overkill:
+
+        BiFunExp xt = Builder.Build(expression -> expression
+                .Exp(
+                        a -> a.Add(
+                                b -> b.Exp(c -> c.Pi()),
+                                b -> b.X()
+                        )
+                )
+        );
+
+        BiFunExp yt = Builder.Build(expression -> expression
+                .Exp(
+                        a -> a.Add(
+                                b -> b.Exp(c -> c.Pi()),
+                                b -> b.Mul(c -> c.X(), c -> c.X())
+                        )
+                )
+        );
+
+
+        // Det här är ju den kanske rimligare facotry methods varianten:
+
+        // analyticPath.BiFunExp.Factory b = new analyticPath.BiFunExp.Factory();
+
+        // BiFunExp xt =
+        //         b.Exp(b.Add(
+        //                 b.Exp(b.Pi()),
+        //                 b.X()
+        //         ));
+
+        // BiFunExp yt =
+        //         b.Exp(b.Add(
+        //                 b.Exp(b.Pi()),
+        //                 b.Mul(b.X(), b.X())
+        //         ));
+
         Vector<Double> I = new Vector<>(Arrays.asList(0.0,10.0));
 
         analyticPath testPath = new analyticPath(xt, yt);
