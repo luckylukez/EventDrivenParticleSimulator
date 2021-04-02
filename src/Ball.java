@@ -121,8 +121,8 @@ public class Ball{
             dty = Double.POSITIVE_INFINITY;
             yWall = "";
         }
-        System.out.println("dtx: " + dtx);
-        System.out.println("dty: " + dty);
+        //System.out.println("dtx: " + dtx);
+        //System.out.println("dty: " + dty);
 
         Collision c;
         Ball[] colliders = {this};
@@ -168,7 +168,7 @@ public class Ball{
             //System.out.println("The roots are " + r1 + " and " + r2);
             //Den senare lösningen borde aldrig hända eftersom det innebär att bollarna är inne i varandra.
             if(deltaT1 >= 0 && deltaT2 >= 0) {
-                System.out.println("Returning double solution dt = " + deltaT1);
+                //ystem.out.println("Returning double solution dt = " + deltaT1);
                 return deltaT1;
             }
             else if(deltaT1 < 0 && deltaT2 >= 0){

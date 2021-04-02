@@ -23,9 +23,7 @@ public class World extends JPanel implements ActionListener {
 
     public World(ArrayList<Ball> balls){
         this.balls = balls;
-        System.out.println("Creating visula data");
         createVisualData();
-        System.out.println("visual data created");
         this.timer = new Timer(DELAY_MILLIS, this);
         timer.start();
     }
@@ -68,7 +66,12 @@ public class World extends JPanel implements ActionListener {
 
             g2d.fillOval((int) (x - r), (int) (y - r), (int) (2 * r), (int) (2 * r));
         }
-        this.visualIteration++;
+        if(visualIteration > T/DT - 1){
+            this.visualIteration = 0;
+        }
+        else{
+            this.visualIteration++;
+        }
     }
 
     void createVisualData(){

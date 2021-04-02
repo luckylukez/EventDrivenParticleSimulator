@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ac6033a-c279-4dce-95c6-8bc1cb41a2d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/Ball.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/BouncingBalls$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/BouncingBalls$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/BouncingBalls.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/BouncingBalls.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/Collision.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/Collision.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/CollisionObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/CollisionObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/Frame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventDrivenParticles/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventDrivenParticles/World.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AnalyticBall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AnalyticPath.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ball.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BouncingBalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BouncingBalls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CollisionObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CollisionObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wall.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/World.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BouncingBalls.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-476">
-              <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+            <state relative-caret-position="352">
+              <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,19 +29,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+            <state relative-caret-position="-145">
+              <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#851#852#0" expanded="true" />
@@ -80,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="29" />
+            <state relative-caret-position="238">
+              <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+            <state relative-caret-position="425">
+              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2544#2545#0" expanded="true" />
@@ -106,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/Component.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
+            <state relative-caret-position="989">
               <caret line="3392" column="16" selection-start-line="3392" selection-start-column="16" selection-end-line="3392" selection-end-column="16" />
               <folding>
                 <element signature="e#116692#116693#0" expanded="true" />
@@ -119,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Collision.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2210">
-              <caret line="146" column="10" selection-start-line="146" selection-start-column="10" selection-end-line="146" selection-end-column="10" />
+            <state relative-caret-position="37">
+              <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
               <folding>
                 <element signature="e#439#440#0" expanded="true" />
                 <element signature="e#469#470#0" expanded="true" />
@@ -174,10 +151,10 @@
         <option value="$PROJECT_DIR$/src/AnalyticBall.java" />
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/CollisionObject.java" />
-        <option value="$PROJECT_DIR$/src/Frame.java" />
-        <option value="$PROJECT_DIR$/src/Ball.java" />
         <option value="$PROJECT_DIR$/src/Collision.java" />
+        <option value="$PROJECT_DIR$/src/Ball.java" />
         <option value="$PROJECT_DIR$/src/BouncingBalls.java" />
+        <option value="$PROJECT_DIR$/src/Frame.java" />
         <option value="$PROJECT_DIR$/src/World.java" />
       </list>
     </option>
@@ -194,7 +171,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -211,10 +187,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617004763308" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617389436339" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/jom-0.4.0.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -268,8 +245,8 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.21208054" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49915683" visible="true" weight="0.12550336" />
+      <window_info id="Structure" order="1" sideWeight="0.50084317" side_tool="true" weight="0.12550336" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -277,8 +254,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10481586" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10056657" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26628897" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
@@ -378,20 +355,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Frame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ball.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        <state relative-caret-position="-145">
+          <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#851#852#0" expanded="true" />
@@ -412,19 +379,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BouncingBalls.java">
+    <entry file="file://$PROJECT_DIR$/src/Collision.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-476">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state relative-caret-position="37">
+          <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
+        <state relative-caret-position="989">
           <caret line="3392" column="16" selection-start-line="3392" selection-start-column="16" selection-end-line="3392" selection-end-column="16" />
           <folding>
             <element signature="e#116692#116693#0" expanded="true" />
@@ -433,21 +401,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Collision.java">
+    <entry file="file://$PROJECT_DIR$/src/BouncingBalls.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="146" column="10" selection-start-line="146" selection-start-column="10" selection-end-line="146" selection-end-column="10" />
+        <state relative-caret-position="352">
+          <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
           <folding>
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state relative-caret-position="425">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2544#2545#0" expanded="true" />

@@ -27,9 +27,7 @@ public class Frame extends JFrame{
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        System.out.println("creating world");
         content.add(new World(balls), gbc);
-        System.out.println("world created");
         content.setPreferredSize(new Dimension(World.X_PIXELS+2*borderWidth+1, World.Y_PIXELS+2*borderWidth+1));
         pack();
         setTitle("Balls");
