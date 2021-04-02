@@ -1,48 +1,27 @@
 import analyticPath.BiFunExp;
 import analyticPath.analyticPath;
-import analyticPath.PowerSeries;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
-import java.util.function.Function;
 
 public class FunExpTest {
     public static void main(String[] args) throws ClassNotFoundException {
-        BiFunExp.Exp xt = new BiFunExp.Exp(new BiFunExp.Add(new BiFunExp.Exp(new BiFunExp.Pi()), new BiFunExp.X()));
-        BiFunExp.Exp yt = new BiFunExp.Exp(new BiFunExp.Add(new BiFunExp.Exp(new BiFunExp.Pi()), new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X())));
-        Vector<Double> I = new Vector<>(Arrays.asList(0.0,10.0));
+        BiFunExp x1t = new BiFunExp.Add(new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X()), new BiFunExp.Mul(new BiFunExp.Con(3.0), new BiFunExp.X()));
+        BiFunExp y1t = new BiFunExp.Add(new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X())), new BiFunExp.Mul(new BiFunExp.One(), new BiFunExp.X()));
 
-        analyticPath testPath = new analyticPath(xt, yt);
-        testPath.addInterval(I);
+        BiFunExp x2t = new BiFunExp.Add(new BiFunExp.Add(new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X()), new BiFunExp.Mul(new BiFunExp.Con(2.0), new BiFunExp.X())), new BiFunExp.Con(4.0));
+        BiFunExp y2t = new BiFunExp.Add(new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X())), new BiFunExp.Mul(new BiFunExp.X(), new BiFunExp.X()));
 
-        LinkedList<Double[]> result = testPath.evalPath(1);
-        for (int i = 0; i < result.size(); i++) {
-                System.out.println("x = " + result.get(i)[0] + ", x' = " + result.get(i)[1] +
-                        ", y = " + result.get(i)[2] + ", y' = " + result.get(i)[3] + ", t = " + result.get(i)[4]);
-        }
+        analyticPath p1 = new analyticPath(x1t, y1t);
+        analyticPath p2 = new analyticPath(x2t, y2t);
 
-        PowerSeries ps = new PowerSeries(yt);
-        System.out.println(ps.getCoeff(10, 5.0));
+        Vector<Double> I = new Vector<>(Arrays.asList(0.0,60.0));
+        p1.addInterval(I);
+        p2.addInterval(I);
 
-
-        /*
-        System.out.println("f(1) = " + f.get(0).apply(1.0));
-        System.out.println("f'(1) = " + f.get(1).apply(1.0));
-        System.out.println("f(2) = " + f.get(0).apply(2.0));
-        System.out.println("f'(2) = " + f.get(1).apply(2.0));
-        System.out.println("f(3) = " + f.get(0).apply(3.0));
-        System.out.println("f'(3) = " + f.get(1).apply(3.0));
-        System.out.println("f(100) = " + f.get(0).apply(100.0));
-        System.out.println("f'(100) = " + f.get(1).apply(100.0));
-
-        System.out.println("g(1) = " + g.apply(1.0));
-        System.out.println("g(2) = " + g.apply(2.0));
-        System.out.println("g(3) = " + g.apply(3.0));
-        System.out.println("g(100) = " + g.apply(100.0));
-         */
-
+        double intersectTime = analyticPath.findIntersect(p1, p2, 2, 0, 60, 0.1);
+        System.out.println("time of collision: " + intersectTime);
 
     }
 }

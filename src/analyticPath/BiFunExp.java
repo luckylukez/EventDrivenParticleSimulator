@@ -1,8 +1,5 @@
 package analyticPath;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
 import java.util.function.Function;
 
 public class BiFunExp  {
@@ -130,55 +127,55 @@ public class BiFunExp  {
     public static BiFunExp expr;
     public BiFunExp() {}
 
-    public FunPair biFunNeg(FunPair f) {
+    public static FunPair biFunNeg(FunPair f) {
         return new FunPair(
                 x -> -f.getFun().apply(x),
                 x -> -f.getDeriv().apply(x));
     }
 
-    public FunPair biFunAdd(FunPair f, FunPair g) {
+    public static FunPair biFunAdd(FunPair f, FunPair g) {
         return new FunPair(
                 x -> f.getFun().apply(x) + g.getFun().apply(x),
                 x -> f.getDeriv().apply(x) + g.getDeriv().apply(x));
     }
 
-    public FunPair biFunMul(FunPair f, FunPair g) {
+    public static FunPair biFunMul(FunPair f, FunPair g) {
         return new FunPair(
                 x -> f.getFun().apply(x) * g.getFun().apply(x),
                 x -> f.getFun().apply(x) + g.getDeriv().apply(x) + f.getDeriv().apply(x) * g.getFun().apply(x));
     }
 
-    public FunPair biFunRecip(FunPair f) {
+    public static FunPair biFunRecip(FunPair f) {
         return new FunPair(
                 x -> 1/f.getFun().apply(x),
                 x -> (-1 / (f.getFun().apply(x) * f.getFun().apply(x))) * f.getDeriv().apply(x));
     }
 
-    public FunPair biFunRoot(FunPair f) {
+    public static FunPair biFunRoot(FunPair f) {
         return new FunPair(
                 x -> Math.sqrt(f.getFun().apply(x)),
                 x -> f.getDeriv().apply(x) / (2 * Math.sqrt(f.getFun().apply(x))));
     }
 
-    public FunPair biFunSin(FunPair f) {
+    public static FunPair biFunSin(FunPair f) {
         return new FunPair(
                 x -> Math.sin(f.getFun().apply(x)),
                 x -> Math.cos(f.getFun().apply(x)) * f.getDeriv().apply(x));
     }
 
-    public FunPair biFunCos(FunPair f) {
+    public static FunPair biFunCos(FunPair f) {
         return new FunPair(
                 x -> Math.cos(f.getFun().apply(x)),
                 x -> -Math.sin(f.getFun().apply(x)) * f.getDeriv().apply(x));
     }
 
-    public FunPair biFunExp(FunPair f) {
+    public static FunPair biFunExp(FunPair f) {
         return new FunPair(
                 x -> Math.exp(f.getFun().apply(x)),
                 x -> Math.exp(f.getFun().apply(x)) * f.getDeriv().apply(x));
     }
 
-    public FunPair biFunLog(FunPair f){
+    public static FunPair biFunLog(FunPair f){
         return new FunPair(
                 x -> Math.log(f.getFun().apply(x)),
                 x -> f.getDeriv().apply(x)/f.getFun().apply(x));
@@ -193,7 +190,7 @@ public class BiFunExp  {
     Returns:
     (BiFunExp): Differentiated expression
      */
-    public BiFunExp synatxDeriv(BiFunExp expr) throws ClassNotFoundException {
+    public static BiFunExp synatxDeriv(BiFunExp expr) throws ClassNotFoundException {
         if      (expr instanceof Zero)  { return new Zero(); }
         else if (expr instanceof One)   { return new Zero(); }
         else if (expr instanceof Con)   { return new Zero(); }
@@ -227,10 +224,34 @@ public class BiFunExp  {
         else {
             throw new ClassNotFoundException("Unexpected function input.");
         }
-
     }
 
-    public FunPair eval(BiFunExp expr) throws ClassNotFoundException {
+    /*
+    TODO: implement polyCheck for division of polynomials.
+    Checks if supplied function expression is a polynomial.
+
+
+    Parameters:
+    (BiFunExp): Function expression to be checked if it is polynomial
+
+    Returns:
+    (boolean): true expression is polynomial, otherwise false
+     */
+    public static boolean polyCheck(BiFunExp expr) {
+        if      (expr instanceof Zero)  { return true; }
+        else if (expr instanceof One)   { return true; }
+        else if (expr instanceof Con)   { return true; }
+        else if (expr instanceof Pi)    { return true; }
+        else if (expr instanceof X)     { return true; }
+        else if (expr instanceof Neg)   { return polyCheck(((Neg) expr).getExpr()); }
+        else if (expr instanceof Add)   { return polyCheck(((Add) expr).getExpr1()) && polyCheck(((Add) expr).getExpr2()); }
+        else if (expr instanceof Mul)   { return polyCheck(((Mul) expr).getExpr1()) && polyCheck(((Mul) expr).getExpr2()); }
+        else {
+            return false;
+        }
+    }
+
+    public static FunPair eval(BiFunExp expr) throws ClassNotFoundException {
         if      (expr instanceof Zero)  { return ((Zero) expr).getF(); }
         else if (expr instanceof One)   { return ((One) expr).getF(); }
         else if (expr instanceof Con)   { return ((Con) expr).getF(); }
