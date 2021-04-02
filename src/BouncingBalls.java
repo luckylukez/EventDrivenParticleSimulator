@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.time.*;
+import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 import com.jom.DoubleMatrixND;
 import com.jom.OptimizationProblem;
@@ -11,83 +14,144 @@ import com.jom.OptimizationProblem;
 public class BouncingBalls {
     public static void main(String[] args){
 
-        int N = 5; // number of elements in each set
-
-        /* Create the optimization problem object */
-        OptimizationProblem op = new OptimizationProblem();
-
-        /* Add the decision variables to the problem */
-        op.addDecisionVariable("x", false, new int[] { N , N , N }, 0, 1);  // name, isInteger, size , minValue, maxValue
-
-        /* Set value for the input parameter c_{ijk} */
-        op.setInputParameter("c", new DoubleMatrixND(new int [] { N , N , N} , "random"));
-
-        /* Sets the objective function */
-        op.setObjectiveFunction("minimize", "sum(x .* c)");
-
-        /* Add the constraints */
-        op.addConstraint(" sum(sum(x,3),2) <= 1");  // for each i \sum_{jk} x_{ijk} <= 1
-        op.addConstraint(" sum(sum(x,3),1) <= 1");  // for each j \sum_{ik} x_{ijk} <= 1
-        op.addConstraint(" sum(sum(x,2),1) <= 1");  // for each k \sum_{ij} x_{ijk} <= 1
-
-        /* Call the solver to solve the problem */
-        op.solve("glpk" ,  "solverLibraryName" , "glpk_4_47");
-        if (!op.solutionIsOptimal ()) throw new RuntimeException ("An optimal solution was not found");
-
-        /* Print the solution */
-        DoubleMatrixND sol = op.getPrimalSolution("x");
-        for (int c1 = 0 ; c1 < N ; c1 ++)
-            for (int c2 = 0 ; c2 < N ; c2 ++)
-                for (int c3 = 0 ; c3 < N ; c3 ++)
-                    if (sol.get(new int [] { c1 , c2 , c3}) == 1)
-                        System.out.println (c1 + " - " + c2 + " - " + c3);
-
-
-        ArrayList<CollisionObject> balls = new ArrayList<>();
-        // TODO: create balls
 
 
 
-        //TODO: Create collision objects for the walls
-        CollisionObject leftWall = new CollisionObject();
-        CollisionObject rightWall = new CollisionObject();
-        CollisionObject upperWall = new CollisionObject();
-        CollisionObject lowerWall = new CollisionObject();
+        ArrayList<Ball> balls = new ArrayList<>();
 
-        ArrayList<CollisionObject> walls = new ArrayList<>();
-        walls.add(leftWall);
-        walls.add(rightWall);
-        walls.add(upperWall);
-        walls.add(lowerWall);
+
+        for(int i = 1; i < 4; i++){
+            for(int j = 1; j < 4; j++){
+                balls.add(new Ball(Integer.toString(i) + Integer.toString(j),30,100+100*i, 100+100*j, (int) ((Math.random() * 600)-300), (int) ((Math.random() * 600)-300)));
+            }
+        }
+
+        //balls.add(new Ball("b1", 50, 60, 60, 200, 0));
+       //balls.add(new Ball("b2",70,300,80, -200, 100));
+        //balls.add(new Ball("b3",40,300+10,60, -100, 0));
+        System.out.println("INITIAL BALLSTATE: ");
+        printBallStates(balls,0, 0);
+
+
 
         // Create collisions queue
         PriorityQueue<Collision> collisions = new PriorityQueue<>();
+        System.out.println("######################################################################");
+        System.out.println("NEW COLLISIONS:");
         for (int i = 0; i < balls.size(); i++){
-            CollisionObject b1 = balls.get(i);
-            for(int j = i+1; j < balls.size(); j++ ){
-                CollisionObject b2 = balls.get(j);
-                Collision c = b1.calculateCollision(b2);
-                collisions.add(c);
+            Ball b1 = balls.get(i);
+            for(int j = i+1; j < balls.size(); j++ ) {
+                Ball b2 = balls.get(j);
+                Collision newBallCollision = b1.getNewBallCollision(b2, 0);
+                if(newBallCollision != null){
+                    collisions.add(newBallCollision);
+                    newBallCollision.print();
+                }
             }
-            collisions.add(b1.calculateWallCollision());
+            Collision nextWallCollision = b1.getNextWallCollision(0);
+            collisions.add(nextWallCollision);
+            nextWallCollision.print();
+        }
+        System.out.println("######################################################################");
+        System.out.println("PRINTING PQ: ");
+        for(Collision c: collisions){
+            c.print();
         }
 
         //####################
         //MAIN LOOP
         //####################
-        double T = 100;
-        while(collisions.peek().getCollisionTime() < T){
+        double T = World.T;
+        double t = 0;
+        int iteration = 0;
+        while(t < T){
+            // Choose next collision
+            System.out.println("######################################################################");
+            System.out.println("PRINTING PQ: ");
+            for(Collision c: collisions){
+                c.print();
+            }
             Collision nextCollision = collisions.poll();
-
-
             if(nextCollision.isRelevant()){
-                CollisionObject[] colliders = nextCollision.getColliders();
-                double t = nextCollision.getCollisionTime();
-                for(CollisionObject obj: colliders){
-                    //TODO: calculate new path functions
-                    // save time and function data
+                System.out.println("##############################################################");
+                System.out.println("NEXT COLLISION:");
+                nextCollision.print();
+
+                System.out.println("t: " + t);
+                double tNext = nextCollision.getCollisionTime();
+                System.out.println("tNext: " + tNext);
+                double dt = tNext - t;
+                System.out.println("dt: " + dt);
+                t += dt; //move time to next collision
+
+                // End if next collision is after time limit
+                if(t >= T){
+                    break;
+                }
+                // Update ball positions to next Collision time
+                for(Ball b : balls){
+                    b.updatePosition(dt);
+                }
+                Ball[] colliders = nextCollision.getColliders();
+                // update velocities for colliders
+                nextCollision.updateCollisionVelocities();
+
+                iteration++;
+                for(Ball ball : colliders) {
+                    ball.incrementCollisionCount();
+                    ball.saveData(t);
+                }
+
+                printBallStates(balls, t, iteration);
+
+                System.out.println("######################################################################");
+                System.out.println("NEW COLLISIONS:");
+                for(int i = 0; i < colliders.length; i++){
+                    Ball b1 = colliders[i];
+                    for(int j = 0; j < balls.size(); j++ ) {
+                        Ball b2 = balls.get(j);
+                        if(Arrays.asList(colliders).contains(b2)){
+                            continue;
+                        }
+                        Collision newBallCollision = b1.getNewBallCollision(b2, t);
+                        if(newBallCollision != null){
+                            collisions.add(newBallCollision);
+                            newBallCollision.print();
+                        }
+                    }
+                    Collision nextWallCollision = b1.getNextWallCollision(t);
+                    collisions.add(nextWallCollision);
+                    nextWallCollision.print();
                 }
             }
+        }
+        System.out.println("calculateions done");
+        //TODO: print data
+
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("creating frame");
+                Frame frame = new Frame(balls);
+                System.out.println("frame initialised");
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                System.out.println("frame created");
+            }
+        });
+
+
+
+    }
+
+    public static void printBallStates(ArrayList<Ball> balls, double t, int iteration){
+        System.out.println("#######################################################################################");
+        System.out.println("iteration: " + iteration + ", time: " + t);
+        System.out.println("#######################################################################################");
+        System.out.println("PRINTING BALL STATES: ");
+        for(Ball b : balls){
+            b.printState();
         }
     }
 }
